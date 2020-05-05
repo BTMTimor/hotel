@@ -1,0 +1,74 @@
+{
+  "template": {
+    "controller": "/generator/template/jboot/my/Controller.jf",
+    "baseModel": "/generator/template/jboot/my/BaseModel.jf",
+    "service": "/generator/template/jboot/my/Service.jf",
+    "model": "/generator/template/jboot/my/Model.jf",
+    "apiController": "/generator/template/jboot/my/ApiController.jf",
+    "serviceImpl": "/generator/template/jboot/my/ServiceImpl.jf"
+  },
+  "common": {
+    "baseApiControllerRoute": "/api/v1",
+    "baseOutputDir": "D:\\MyProjects\\StudyProject\\hotel\\hotelManager\\src\\main\\java",
+    "basePackage": "cai.tm.hotel",
+    "baseModelPackage": "cn.tm.hotel.common.base.model",
+    "baseControllerRoute": "/",
+    "generateChainSetter": false
+  },
+  "dependency": {
+    "baseApiController": "org.tm.common.base.controller.BaseApiController",
+    "baseModel": "org.tm.common.base.model.BaseModel",
+    "apiResult": "org.tm.common.base.api.result.ApiResult",
+    "baseService": "org.tm.common.base.service.BaseService",
+    "baseController": "org.tm.common.base.controller.BaseController",
+    "baseServiceImpl": "org.tm.common.base.service.impl.BaseServiceImpl",
+    "baseCondition": "org.tm.common.base.model.BaseCondition",
+    "baseICondition": "org.tm.common.base.model.ICondition"
+  },
+  "ignore": {
+    "tables": [
+      "abc"
+    ],
+    "rule": [
+      ".+_mapping",
+      ".+test",
+      ".+log",
+      "file.+",
+      "payment.+"
+    ]
+  },
+  "coverRule": {
+    "controller": false,
+    "baseModel": true,
+    "service": false,
+    "model": false,
+    "apiController": false,
+    "baseRule": false,
+    "serviceImpl": false
+  },
+  "generate": {
+    "controller": false,
+    "baseModel": true,
+    "service": false,
+    "model": false,
+    "apiController": false,
+    "serviceImpl": false
+  },
+  "packageNameRule": {
+    "controller": ".controller",
+    "service": ".service",
+    "model": ".model",
+    "apiController": ".controller",
+    "serviceImpl": ".service.impl"
+  },
+  "classNameRule": {
+    "controller": "Controller",
+    "serviceHead": "",
+    "serviceTail": "Service",
+    "model": "",
+    "modelBaseHead": "Base",
+    "modelBaseTail": "",
+    "apiController": "ApiController",
+    "serviceImpl": "ServiceImpl"
+  }
+}

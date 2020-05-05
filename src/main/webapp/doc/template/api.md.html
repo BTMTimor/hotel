@@ -1,0 +1,56 @@
+<meta charset="utf-8" emacsmode="-*- markdown -*-"> <link rel="stylesheet" href="https://casual-effects.com/markdeep/latest/journal.css?">
+
+   **hotel 接口文档**
+      Version 1.1
+
+
+2020-03-17: 接口总览（简要模式）
+=================================================================
+
+#for(route : routes)
+* #(route.name) #(route.paraString)
+#end
+
+
+2020-03-17: 接口总览（平铺模式）
+=================================================================
+
+序号 | 接口名 | 接口地址 | 接口权限 | 接口描述
+---- |-------|----------|---------|--------
+#for(route : routes)
+#(for.count) | #(route.name) | #(route.route) | #(route.permissionString) | #(route.description)
+#end
+[Table [states]: Caption with label.]
+
+
+
+2020-03-17: 详细接口文档
+=================================================================
+
+#for(route : routes)
+
+#[[### 1. XXX接口：]]# #(route.route)
+
+#[[#### 1）request]]#
+#if(!route.parameters.isEmpty())
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   #for(parameter : route.parameters)
+   #(for.count) | #(parameter.name) | #(parameter.type) |   | #(route.description)
+   #else
+      |   |    |     |   void
+   #end
+#else
+   无参数
+#end
+
+#[[#### 2）response]]#
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+#end
+
+<style class="fallback">body{visibility:hidden}</style><script>markdeepOptions={tocStyle:'long'};</script>
+<!-- Markdeep: --><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js?" charset="utf-8"></script>

@@ -1,0 +1,18 @@
+package #(metaData.serviceImplPackage);
+
+import io.jboot.aop.annotation.Bean;
+import com.jfinal.plugin.activerecord.Page;
+
+import #(config.baseServiceImpl);
+import #(config.baseICondition);
+import #(metaData.servicePackage).#(metaData.serviceName);
+import #(metaData.modelPackage).#(metaData.modelName);
+
+@Bean
+public class #(metaData.serviceImplName) extends BaseServiceImpl<#(metaData.modelName)> implements #(metaData.serviceName) {
+
+    @Override
+    public Page<#(metaData.modelName)> findAllByCondition(ICondition condition) {
+        return findAllByCondition(condition);
+    }
+}

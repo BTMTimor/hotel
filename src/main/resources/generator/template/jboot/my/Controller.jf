@@ -1,0 +1,56 @@
+package #(metaData.controllerPackage);
+
+import #(config.apiResult);
+import #(config.BaseController);
+import #(config.baseCondition);
+import #(config.baseService);
+import #(metaData.modelPackage).#(metaData.modelName);
+import #(metaData.servicePackage).#(metaData.serviceName);
+import io.jboot.web.controller.annotation.RequestMapping;
+
+import com.jfinal.aop.Inject;
+import com.jfinal.core.ActionKey;
+import com.jfinal.core.paragetter.Para;
+import org.tm.common.annotation.ApiController;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@SuppressWarnings("unused")
+@RequestMapping("#(metaData.controllerRoute)")
+public class #(metaData.controllerName) extends BaseController<#(metaData.modelName)> {
+    // static Logger logger = LoggerFactory.getLogger(#(metaData.apiControllerName).class);
+    @Inject
+    private #(metaData.serviceName) #(firstCharToLowerCase(metaData.serviceName));
+
+    @ActionKey("#(metaData.controllerRoute)/get")
+    public ApiResult getById(String id) {
+        return super.getById(id);
+    }
+
+    @ActionKey("#(metaData.controllerRoute)/add")
+    public ApiResult save(@Para("") #(metaData.modelName) entity) {
+        return super.checkAndAdd(entity);
+    }
+
+###    @ActionKey("#(metaData.controllerRoute)/update")
+    public ApiResult update(@Para("") #(metaData.modelName) entity) {
+        return super.checkAndUpdate(entity);
+    }
+
+    @ActionKey("#(metaData.controllerRoute)/delete")
+    public ApiResult deleteById(String id) {
+        return super.deleteById(id);
+    }
+
+    @ActionKey("#(metaData.controllerRoute)/list")
+    public ApiResult findAll(@Para("") BaseCondition condition) {
+        return super.findAll(condition);
+    }
+
+    @Override
+    protected BaseService<#(metaData.modelName)> getService() {
+        return #(firstCharToLowerCase(metaData.serviceName));
+    }
+
+}

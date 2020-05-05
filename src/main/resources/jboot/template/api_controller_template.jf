@@ -1,0 +1,56 @@
+package #(controllerPackage);
+
+import #(modelPackage).#(tableMeta.modelName);
+import #(servicePackage).#(tableMeta.modelName)Service;
+import #(apiResultClass);
+import com.alibaba.fastjson.JSONObject;
+import com.jfinal.aop.Inject;
+import com.jfinal.core.ActionKey;
+import com.jfinal.core.paragetter.Para;
+import com.jfinal.plugin.activerecord.Page;
+import io.jboot.web.controller.JbootController;
+import io.jboot.web.controller.annotation.RequestMapping;
+
+import java.util.List;
+
+@SuppressWarnings("unused")
+@RequestMapping("/#(firstCharToLowerCase(tableMeta.modelName))")
+public class #(tableMeta.modelName)RestController extends JbootController {
+    @Inject
+    private #(tableMeta.modelName)Service #(firstCharToLowerCase(tableMeta.modelName))Service;
+
+    @ActionKey("/#(firstCharToLowerCase(tableMeta.modelName))/get")
+    public void fetch(@Para("id") long id) {
+        #(tableMeta.modelName) #(firstCharToLowerCase(tableMeta.modelName)) = #(firstCharToLowerCase(tableMeta.modelName))Service.findById(id);
+        renderJson(ApiResult.success().addData("item", #(firstCharToLowerCase(tableMeta.modelName))));
+    }
+
+    @ActionKey("/#(firstCharToLowerCase(tableMeta.modelName))/add")
+    public void save() {
+        #(tableMeta.modelName) #(firstCharToLowerCase(tableMeta.modelName)) = getRawObject(#(tableMeta.modelName).class);
+        #(firstCharToLowerCase(tableMeta.modelName))Service.save(#(firstCharToLowerCase(tableMeta.modelName)));
+        renderJson(ApiResult.success());
+    }
+
+    public void update() {
+        #(tableMeta.modelName) #(firstCharToLowerCase(tableMeta.modelName)) = getRawObject(#(tableMeta.modelName).class);
+        #(firstCharToLowerCase(tableMeta.modelName))Service.update(#(firstCharToLowerCase(tableMeta.modelName)));
+        renderJson(ApiResult.success());
+    }
+
+    public void delete(@Para("id") long id) {
+        boolean bool = #(firstCharToLowerCase(tableMeta.modelName))Service.deleteById(id);
+        renderJson(ApiResult.success().addData("bool", bool));
+    }
+
+    public void list() {
+        List<#(tableMeta.modelName)> #(firstCharToLowerCase(tableMeta.modelName))s = #(firstCharToLowerCase(tableMeta.modelName))Service.findAll();
+        renderJson(ApiResult.success().addData("items", #(firstCharToLowerCase(tableMeta.modelName))s));
+    }
+
+    public void page(@Para("page") int pageNo, @Para("pageSize") int pageSize) {
+        Page<#(tableMeta.modelName)> page = #(firstCharToLowerCase(tableMeta.modelName))Service.paginate(pageNo, pageSize);
+        renderJson(ApiResult.success().addData("page", page));
+    }
+
+}

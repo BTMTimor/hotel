@@ -1,0 +1,44 @@
+<meta charset="utf-8" emacsmode="-*- markdown -*-"> <link rel="stylesheet" href="https://casual-effects.com/markdeep/latest/journal.css?">
+
+   **hotel 所有对象**
+      Version 1.0
+
+
+2020-03-17: 接口总览（平铺模式）
+=================================================================
+
+
+#for(tableMeta : tableMetas.values())
+
+#[[###]]# #(tableMeta.modelName)对象
+
+<table border="1">
+   <tr>
+      <th>序号</th>
+      <th>成员</th>
+      <th>约束</th>
+      <th>可空</th>
+      <th>主键</th>
+      <th>默认值</th>
+      <th>备注</th>
+   <tr>
+#for(cm : tableMeta.columnMetas)
+   ###set(len = cm.javaType.lastIndexOf(".") + 1)
+   ###(cm.javaType.substring(len))
+   <tr>
+      <td>#(for.count)</td>
+      <td>#(cm.columnName)</td>
+      <td>#(cm.columnType)</td>
+      <td>#(cm.isNullable)</td>
+      <td>#(cm.columnKey)</td>
+      <td>#(cm.columnDefault)</td>
+      <td>#(cm.columnComment)</td>
+</tr>
+#end
+</table>
+
+#end
+
+
+<style class="fallback">body{visibility:hidden}</style><script>markdeepOptions={tocStyle:'long'};</script>
+<!-- Markdeep: --><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js?" charset="utf-8"></script>

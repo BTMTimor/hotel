@@ -1,0 +1,3086 @@
+<meta charset="utf-8" emacsmode="-*- markdown -*-"> <link rel="stylesheet" href="https://casual-effects.com/markdeep/latest/journal.css?">
+
+   **hotel 接口文档**
+      Version 1.1
+
+
+2020-03-17: 接口总览（简要模式）
+=================================================================
+
+* /testModel/testModel/list1 (int pageNumber, int pageSize)
+* /testModel/testModel/list2 (BaseCondition condition)
+* /api/v1/payment/record/add (PaymentRecord entity)
+* /api/v1/hotel/app/delete (String id)
+* /api/v1/user/group/list (BaseCondition condition)
+* /api/v1/system/dict/delete (String id)
+* /api/v1/hotel/update (Hotel entity)
+* /api/v1/testModel/get (String id)
+* //testModel/testModel/tim ()
+* /api/v1/user/permission/add (UserPermission entity)
+* /api/v1/user/operator/get (String id)
+* /api/v1/user/update (User entity)
+* /api/v1/system/coupon/list (BaseCondition condition)
+* /api/v1/hotel/coupon/public (BaseCondition condition)
+* /api/v1/user/operator/delete (String id)
+* /api/v1/user/info/get (String id)
+* /api/v1/room/add (Room entity)
+* /api/v1/system/operation/log/delete (String id)
+* /api/v1/a/temp/delete (String id)
+* /api/v1/hotel/device/delete (String id)
+* /api/v1/file/upload/delete (String id)
+* /api/v1/system/operation/log/list (BaseCondition condition)
+* /api/v1/file/upload/list (BaseCondition condition)
+* /user/face/list (BaseCondition condition)
+* /api/v1/user/order/add (UserOrder entity)
+* /routes ()
+* /api/v1/message/type/update (MessageType entity)
+* /api/v1/room/delete (String id)
+* /api/v1/room/type/update (RoomType entity)
+* /api/v1/user/register (User user)
+* /api/v1/user/permission/delete (String id)
+* /api/v1/user/account/update (UserAccount entity)
+* /api/v1/hotel/coupon/update (HotelCoupon entity)
+* /api/v1/payment/record/list (BaseCondition condition)
+* /api/v1/hotel/get (String id)
+* /api/v1/hotel/subsystem/update (HotelSubsystem entity)
+* /api/v1/hotel/list (BaseCondition condition)
+* /api/v1/payment/record/update (PaymentRecord entity)
+* /api/v1/user/account/get (String id)
+* /api/v1/user/feedback/delete (String id)
+* /api/v1/user/third ()
+* /api/v1/user/logout ()
+* /testModel/testModel/get (String id)
+* /api/v1/hotel/subsystem/list (BaseCondition condition)
+* /api/v1/user/info/delete (String id)
+* /api/v1/user/account/flow/get (String id)
+* /api/v1/room/checked/in/list (BaseCondition condition)
+* /api/v1/system/log/add (SystemLog entity)
+* /api/v1/file/upload/get (String id)
+* /api/v1/room/engaged/delete (String id)
+* /api/v1/room/get (String id)
+* /api/v1/message/delete (String id)
+* /api/v1/hotel/service/update (HotelService entity)
+* /user/face/delete (String id)
+* /user/face/getUserByFace (String faceInfo)
+* /api/v1/hotel/goods/delete (String id)
+* /api/v1/room/engaged/get (String id)
+* /api/v1/system/dict/get (String id)
+* /api/v1/room/checked/in/update (RoomCheckedIn entity)
+* /api/v1/hotel/service/list (BaseCondition condition)
+* /api/v1/user/group/delete (String id)
+* /api/v1/hotel/app/add (HotelApp entity)
+* /api/v1/user/card/list (BaseCondition condition)
+* /api/v1/user/group/update (UserGroup entity)
+* /api/v1/system/service/update (SystemService entity)
+* /api/v1/room/checked/in/get (String id)
+* /api/v1/user/role/get (String id)
+* /api/v1/user/feedback/update (UserFeedback entity)
+* /api/v1/user/info/add (UserInfo entity)
+* /api/v1/hotel/device/get (String id)
+* /api/v1/room/type/delete (String id)
+* /api/v1/hotel/goods/get (String id)
+* /api/v1/file/upload/add (FileUpload entity)
+* /api/v1/user/order/update (UserOrder entity)
+* /api/v1/room/engaged/list (BaseCondition condition)
+* /api/v1/user/operator/list (BaseCondition condition)
+* /api/v1/user/card/delete (String id)
+* /api/v1/user/account/flow/list (BaseCondition condition)
+* /api/v1/user/fingerprint (String fingerprint)
+* /api/v1/user/account/flow/update (UserAccountFlow entity)
+* /api/v1/user/info/update (UserInfo entity)
+* /api/v1/user/account/list (BaseCondition condition)
+* /api/v1/message/get (String id)
+* /api/v1/user/info/list (BaseCondition condition)
+* /api/v1/hotel/coupon/add (HotelCoupon entity)
+* /api/v1/system/coupon/add (UserCoupon entity)
+* /api/v1/system/service/list (BaseCondition condition)
+* /api/v1/system/log/update (SystemLog entity)
+* /api/v1/hotel/coupon/delete (String id)
+* /api/v1/user/operator/add (UserOperator entity)
+* /api/v1/user/card/get (String id)
+* /api/v1/hotel/delete (String id)
+* /api/v1/system/log/get (String id)
+* /api/v1/hotel/goods/list (BaseCondition condition)
+* /api/v1/system/dict/update (SystemDict entity)
+* /api/v1/hotel/device/add (HotelDevice entity)
+* /api/v1/user/delete (String id)
+* /api/v1/room/update (Room entity)
+* /api/v1/system/log/delete (String id)
+* /api/v1/user/operator/update (UserOperator entity)
+* /api/v1/user/add (User entity)
+* /api/v1/hotel/subsystem/add (HotelSubsystem entity)
+* /api/v1/a/temp/get (String id)
+* /api/v1/hotel/goods/add (HotelGoods entity)
+* /testModel/testModel/delete1 (String id)
+* /api/v1/room/type/list (BaseCondition condition)
+* /api/v1/a/temp/update (ATemp entity)
+* /api/v1/hotel/device/update (HotelDevice entity)
+* /user/face/add (String userId, String faceInfo)
+* /api/v1/room/list (BaseCondition condition)
+* /api/v1/user/feedback/list (BaseCondition condition)
+* /api/v1/hotel/subsystem/delete (String id)
+* /api/v1/user/role/add (UserRole entity)
+* /api/v1/room/type/add (RoomType entity)
+* /api/v1/system/dict/add (SystemDict entity)
+* /api/v1/system/service/get (String id)
+* /testModel/testModel/update1 (Test entity)
+* /api/v1/user/role/list (BaseCondition condition)
+* /api/v1/room/engaged/add (RoomEngaged entity)
+* /api/v1/user/login ()
+* /api/v1/user/account/delete (String id)
+* /api/v1/message/type/delete (String id)
+* /api/v1/user/card/update (UserCard entity)
+* /api/v1/system/dict/list (BaseCondition condition)
+* /api/v1/message/type/add (MessageType entity)
+* //testModel/testModel/debug ()
+* /api/v1/user/feedback/get (String id)
+* /api/v1/hotel/service/get (String id)
+* /api/v1/system/operation/log/add (SystemOperationLog entity)
+* /user/face/upload (String faceInfo, String faceInfo2)
+* /api/v1/system/operation/log/update (SystemOperationLog entity)
+* /api/v1/user/group/get (String id)
+* /api/v1/user/face (String faceInfo)
+* /api/v1/hotel/coupon/get (String id)
+* /api/v1/user/role/delete (String id)
+* /user/face/update (String userId, String faceInfo)
+* /api/v1/system/coupon/get (String id)
+* /api/v1/hotel/service/delete (String id)
+* /api/v1/system/service/add (SystemService entity)
+* /api/v1/user/account (String username, String password, String code)
+* /api/v1/user/role/update (UserRole entity)
+* /api/v1/message/add (Message entity)
+* /api/v1/hotel/device/list (BaseCondition condition)
+* /api/v1/room/engaged/update (RoomEngaged entity)
+* /api/v1/user/get (String id)
+* /api/v1/room/checked/in/delete (String id)
+* /api/v1/system/log/list (BaseCondition condition)
+* /api/v1/hotel/app/list (BaseCondition condition)
+* /api/v1/system/coupon/delete (String id)
+* /api/v1/room/type/get (String id)
+* /api/v1/hotel/goods/update (HotelGoods entity)
+* /api/v1/testModel/delete (String id)
+* /api/v1/message/type/get (String id)
+* /api/v1/payment/record/get (String id)
+* /api/v1/user/order/get (String id)
+* /api/v1/user/permission/get (String id)
+* /api/v1/message/list (BaseCondition condition)
+* /api/v1/user/permission/list (BaseCondition condition)
+* /api/v1/hotel/subsystem/get (String id)
+* /api/v1/user/account/flow/delete (String id)
+* /api/v1/testModel/update (Test entity)
+* /api/v1/system/service/delete (String id)
+* /api/v1/testModel/add (Test entity)
+* /api/v1/user/card/add (UserCard entity)
+* /testModel/testModel/add1 (Test testModel)
+* /api/v1/user/list (BaseCondition condition)
+* // ()
+* /api/v1/user/order/delete (String id)
+* /api/v1/user/account/add (UserAccount entity)
+* /api/v1/hotel/app/get (String id)
+* /model/view/get (String db)
+* /user/face/get (String id)
+* /api/v1/user/account/flow/add (UserAccountFlow entity)
+* /api/v1/file/upload/update (FileUpload entity)
+* /model/view ()
+* /api/v1/room/checked/in/add (RoomCheckedIn entity)
+* /api/v1/a/temp/list (BaseCondition condition)
+* /api/v1/hotel/coupon/list (BaseCondition condition)
+* /api/v1/message/type/list (BaseCondition condition)
+* /api/v1/hotel/add (Hotel entity)
+* /api/v1/testModel/list (BaseCondition condition)
+* /api/v1/user/group/add (UserGroup entity)
+* /api/v1/user/order/list (BaseCondition condition)
+* /api/v1/payment/record/delete (String id)
+* /api/v1/a/temp/add (ATemp entity)
+* /api/v1/system/operation/log/get (String id)
+* /api/v1/hotel/service/add (HotelService entity)
+* /api/v1/user/feedback/add (UserFeedback entity)
+* /api/v1/user/permission/update (UserPermission entity)
+* //testModel/testModel/abc ()
+* /api/v1/message/update (Message entity)
+* /api/v1/hotel/app/update (HotelApp entity)
+
+
+2020-03-17: 接口总览（平铺模式）
+=================================================================
+
+序号 | 接口名 | 接口地址 | 接口权限 | 接口描述
+---- |-------|----------|---------|--------
+1 | /testModel/testModel/list1 | /testModel/testModel/list1 |  |
+2 | /testModel/testModel/list2 | /testModel/testModel/list2 |  |
+3 | /api/v1/payment/record/add | /api/v1/payment/record/add |  | 
+4 | /api/v1/hotel/app/delete | /api/v1/hotel/app/delete |  | 
+5 | /api/v1/user/group/list | /api/v1/user/group/list |  | 
+6 | /api/v1/system/dict/delete | /api/v1/system/dict/delete |  | 
+7 | /api/v1/hotel/update | /api/v1/hotel/update |  | 
+8 | /api/v1/testModel/get | /api/v1/testModel/get |  |
+9 | //testModel/testModel/tim | //testModel/testModel/tim |  |
+10 | /api/v1/user/permission/add | /api/v1/user/permission/add |  | 
+11 | /api/v1/user/operator/get | /api/v1/user/operator/get |  | 
+12 | /api/v1/user/update | /api/v1/user/update |  | 
+13 | /api/v1/system/coupon/list | /api/v1/system/coupon/list |  | 
+14 | /api/v1/hotel/coupon/public | /api/v1/hotel/coupon/public |  | 
+15 | /api/v1/user/operator/delete | /api/v1/user/operator/delete |  | 
+16 | /api/v1/user/info/get | /api/v1/user/info/get |  | 
+17 | /api/v1/room/add | /api/v1/room/add |  | 
+18 | /api/v1/system/operation/log/delete | /api/v1/system/operation/log/delete |  | 
+19 | /api/v1/a/temp/delete | /api/v1/a/temp/delete |  | 
+20 | /api/v1/hotel/device/delete | /api/v1/hotel/device/delete |  | 
+21 | /api/v1/file/upload/delete | /api/v1/file/upload/delete |  | 
+22 | /api/v1/system/operation/log/list | /api/v1/system/operation/log/list |  | 
+23 | /api/v1/file/upload/list | /api/v1/file/upload/list |  | 
+24 | /user/face/list | /user/face/list |  | 
+25 | /api/v1/user/order/add | /api/v1/user/order/add |  | 
+26 | /routes | /routes |  | 
+27 | /api/v1/message/type/update | /api/v1/message/type/update |  | 
+28 | /api/v1/room/delete | /api/v1/room/delete |  | 
+29 | /api/v1/room/type/update | /api/v1/room/type/update |  | 
+30 | /api/v1/user/register | /api/v1/user/register |  | 
+31 | /api/v1/user/permission/delete | /api/v1/user/permission/delete |  | 
+32 | /api/v1/user/account/update | /api/v1/user/account/update |  | 
+33 | /api/v1/hotel/coupon/update | /api/v1/hotel/coupon/update |  | 
+34 | /api/v1/payment/record/list | /api/v1/payment/record/list |  | 
+35 | /api/v1/hotel/get | /api/v1/hotel/get |  | 
+36 | /api/v1/hotel/subsystem/update | /api/v1/hotel/subsystem/update |  | 
+37 | /api/v1/hotel/list | /api/v1/hotel/list |  | 
+38 | /api/v1/payment/record/update | /api/v1/payment/record/update |  | 
+39 | /api/v1/user/account/get | /api/v1/user/account/get |  | 
+40 | /api/v1/user/feedback/delete | /api/v1/user/feedback/delete |  | 
+41 | /api/v1/user/third | /api/v1/user/third |  | 
+42 | /api/v1/user/logout | /api/v1/user/logout |  | 
+43 | /testModel/testModel/get | /testModel/testModel/get |  |
+44 | /api/v1/hotel/subsystem/list | /api/v1/hotel/subsystem/list |  | 
+45 | /api/v1/user/info/delete | /api/v1/user/info/delete |  | 
+46 | /api/v1/user/account/flow/get | /api/v1/user/account/flow/get |  | 
+47 | /api/v1/room/checked/in/list | /api/v1/room/checked/in/list |  | 
+48 | /api/v1/system/log/add | /api/v1/system/log/add |  | 
+49 | /api/v1/file/upload/get | /api/v1/file/upload/get |  | 
+50 | /api/v1/room/engaged/delete | /api/v1/room/engaged/delete |  | 
+51 | /api/v1/room/get | /api/v1/room/get |  | 
+52 | /api/v1/message/delete | /api/v1/message/delete |  | 
+53 | /api/v1/hotel/service/update | /api/v1/hotel/service/update |  | 
+54 | /user/face/delete | /user/face/delete |  | 
+55 | /user/face/getUserByFace | /user/face/getUserByFace |  | 
+56 | /api/v1/hotel/goods/delete | /api/v1/hotel/goods/delete |  | 
+57 | /api/v1/room/engaged/get | /api/v1/room/engaged/get |  | 
+58 | /api/v1/system/dict/get | /api/v1/system/dict/get |  | 
+59 | /api/v1/room/checked/in/update | /api/v1/room/checked/in/update |  | 
+60 | /api/v1/hotel/service/list | /api/v1/hotel/service/list |  | 
+61 | /api/v1/user/group/delete | /api/v1/user/group/delete |  | 
+62 | /api/v1/hotel/app/add | /api/v1/hotel/app/add |  | 
+63 | /api/v1/user/card/list | /api/v1/user/card/list |  | 
+64 | /api/v1/user/group/update | /api/v1/user/group/update |  | 
+65 | /api/v1/system/service/update | /api/v1/system/service/update |  | 
+66 | /api/v1/room/checked/in/get | /api/v1/room/checked/in/get |  | 
+67 | /api/v1/user/role/get | /api/v1/user/role/get |  | 
+68 | /api/v1/user/feedback/update | /api/v1/user/feedback/update |  | 
+69 | /api/v1/user/info/add | /api/v1/user/info/add |  | 
+70 | /api/v1/hotel/device/get | /api/v1/hotel/device/get |  | 
+71 | /api/v1/room/type/delete | /api/v1/room/type/delete |  | 
+72 | /api/v1/hotel/goods/get | /api/v1/hotel/goods/get |  | 
+73 | /api/v1/file/upload/add | /api/v1/file/upload/add |  | 
+74 | /api/v1/user/order/update | /api/v1/user/order/update |  | 
+75 | /api/v1/room/engaged/list | /api/v1/room/engaged/list |  | 
+76 | /api/v1/user/operator/list | /api/v1/user/operator/list |  | 
+77 | /api/v1/user/card/delete | /api/v1/user/card/delete |  | 
+78 | /api/v1/user/account/flow/list | /api/v1/user/account/flow/list |  | 
+79 | /api/v1/user/fingerprint | /api/v1/user/fingerprint |  | 
+80 | /api/v1/user/account/flow/update | /api/v1/user/account/flow/update |  | 
+81 | /api/v1/user/info/update | /api/v1/user/info/update |  | 
+82 | /api/v1/user/account/list | /api/v1/user/account/list |  | 
+83 | /api/v1/message/get | /api/v1/message/get |  | 
+84 | /api/v1/user/info/list | /api/v1/user/info/list |  | 
+85 | /api/v1/hotel/coupon/add | /api/v1/hotel/coupon/add |  | 
+86 | /api/v1/system/coupon/add | /api/v1/system/coupon/add |  | 
+87 | /api/v1/system/service/list | /api/v1/system/service/list |  | 
+88 | /api/v1/system/log/update | /api/v1/system/log/update |  | 
+89 | /api/v1/hotel/coupon/delete | /api/v1/hotel/coupon/delete |  | 
+90 | /api/v1/user/operator/add | /api/v1/user/operator/add |  | 
+91 | /api/v1/user/card/get | /api/v1/user/card/get |  | 
+92 | /api/v1/hotel/delete | /api/v1/hotel/delete |  | 
+93 | /api/v1/system/log/get | /api/v1/system/log/get |  | 
+94 | /api/v1/hotel/goods/list | /api/v1/hotel/goods/list |  | 
+95 | /api/v1/system/dict/update | /api/v1/system/dict/update |  | 
+96 | /api/v1/hotel/device/add | /api/v1/hotel/device/add |  | 
+97 | /api/v1/user/delete | /api/v1/user/delete |  | 
+98 | /api/v1/room/update | /api/v1/room/update |  | 
+99 | /api/v1/system/log/delete | /api/v1/system/log/delete |  | 
+100 | /api/v1/user/operator/update | /api/v1/user/operator/update |  | 
+101 | /api/v1/user/add | /api/v1/user/add |  | 
+102 | /api/v1/hotel/subsystem/add | /api/v1/hotel/subsystem/add |  | 
+103 | /api/v1/a/temp/get | /api/v1/a/temp/get |  | 
+104 | /api/v1/hotel/goods/add | /api/v1/hotel/goods/add |  | 
+105 | /testModel/testModel/delete1 | /testModel/testModel/delete1 |  |
+106 | /api/v1/room/type/list | /api/v1/room/type/list |  | 
+107 | /api/v1/a/temp/update | /api/v1/a/temp/update |  | 
+108 | /api/v1/hotel/device/update | /api/v1/hotel/device/update |  | 
+109 | /user/face/add | /user/face/add |  | 
+110 | /api/v1/room/list | /api/v1/room/list |  | 
+111 | /api/v1/user/feedback/list | /api/v1/user/feedback/list |  | 
+112 | /api/v1/hotel/subsystem/delete | /api/v1/hotel/subsystem/delete |  | 
+113 | /api/v1/user/role/add | /api/v1/user/role/add |  | 
+114 | /api/v1/room/type/add | /api/v1/room/type/add |  | 
+115 | /api/v1/system/dict/add | /api/v1/system/dict/add |  | 
+116 | /api/v1/system/service/get | /api/v1/system/service/get |  | 
+117 | /testModel/testModel/update1 | /testModel/testModel/update1 |  |
+118 | /api/v1/user/role/list | /api/v1/user/role/list |  | 
+119 | /api/v1/room/engaged/add | /api/v1/room/engaged/add |  | 
+120 | /api/v1/user/login | /api/v1/user/login |  | 
+121 | /api/v1/user/account/delete | /api/v1/user/account/delete |  | 
+122 | /api/v1/message/type/delete | /api/v1/message/type/delete |  | 
+123 | /api/v1/user/card/update | /api/v1/user/card/update |  | 
+124 | /api/v1/system/dict/list | /api/v1/system/dict/list |  | 
+125 | /api/v1/message/type/add | /api/v1/message/type/add |  | 
+126 | //testModel/testModel/debug | //testModel/testModel/debug |  |
+127 | /api/v1/user/feedback/get | /api/v1/user/feedback/get |  | 
+128 | /api/v1/hotel/service/get | /api/v1/hotel/service/get |  | 
+129 | /api/v1/system/operation/log/add | /api/v1/system/operation/log/add |  | 
+130 | /user/face/upload | /user/face/upload |  | 
+131 | /api/v1/system/operation/log/update | /api/v1/system/operation/log/update |  | 
+132 | /api/v1/user/group/get | /api/v1/user/group/get |  | 
+133 | /api/v1/user/face | /api/v1/user/face |  | 
+134 | /api/v1/hotel/coupon/get | /api/v1/hotel/coupon/get |  | 
+135 | /api/v1/user/role/delete | /api/v1/user/role/delete |  | 
+136 | /user/face/update | /user/face/update |  | 
+137 | /api/v1/system/coupon/get | /api/v1/system/coupon/get |  | 
+138 | /api/v1/hotel/service/delete | /api/v1/hotel/service/delete |  | 
+139 | /api/v1/system/service/add | /api/v1/system/service/add |  | 
+140 | /api/v1/user/account | /api/v1/user/account |  | 
+141 | /api/v1/user/role/update | /api/v1/user/role/update |  | 
+142 | /api/v1/message/add | /api/v1/message/add |  | 
+143 | /api/v1/hotel/device/list | /api/v1/hotel/device/list |  | 
+144 | /api/v1/room/engaged/update | /api/v1/room/engaged/update |  | 
+145 | /api/v1/user/get | /api/v1/user/get |  | 
+146 | /api/v1/room/checked/in/delete | /api/v1/room/checked/in/delete |  | 
+147 | /api/v1/system/log/list | /api/v1/system/log/list |  | 
+148 | /api/v1/hotel/app/list | /api/v1/hotel/app/list |  | 
+149 | /api/v1/system/coupon/delete | /api/v1/system/coupon/delete |  | 
+150 | /api/v1/room/type/get | /api/v1/room/type/get |  | 
+151 | /api/v1/hotel/goods/update | /api/v1/hotel/goods/update |  | 
+152 | /api/v1/testModel/delete | /api/v1/testModel/delete |  |
+153 | /api/v1/message/type/get | /api/v1/message/type/get |  | 
+154 | /api/v1/payment/record/get | /api/v1/payment/record/get |  | 
+155 | /api/v1/user/order/get | /api/v1/user/order/get |  | 
+156 | /api/v1/user/permission/get | /api/v1/user/permission/get |  | 
+157 | /api/v1/message/list | /api/v1/message/list |  | 
+158 | /api/v1/user/permission/list | /api/v1/user/permission/list |  | 
+159 | /api/v1/hotel/subsystem/get | /api/v1/hotel/subsystem/get |  | 
+160 | /api/v1/user/account/flow/delete | /api/v1/user/account/flow/delete |  | 
+161 | /api/v1/testModel/update | /api/v1/testModel/update |  |
+162 | /api/v1/system/service/delete | /api/v1/system/service/delete |  | 
+163 | /api/v1/testModel/add | /api/v1/testModel/add |  |
+164 | /api/v1/user/card/add | /api/v1/user/card/add |  | 
+165 | /testModel/testModel/add1 | /testModel/testModel/add1 |  |
+166 | /api/v1/user/list | /api/v1/user/list |  | 
+167 | // | // |  | 
+168 | /api/v1/user/order/delete | /api/v1/user/order/delete |  | 
+169 | /api/v1/user/account/add | /api/v1/user/account/add |  | 
+170 | /api/v1/hotel/app/get | /api/v1/hotel/app/get |  | 
+171 | /model/view/get | /model/view/get |  | 
+172 | /user/face/get | /user/face/get |  | 
+173 | /api/v1/user/account/flow/add | /api/v1/user/account/flow/add |  | 
+174 | /api/v1/file/upload/update | /api/v1/file/upload/update |  | 
+175 | /model/view | /model/view |  | 
+176 | /api/v1/room/checked/in/add | /api/v1/room/checked/in/add |  | 
+177 | /api/v1/a/temp/list | /api/v1/a/temp/list |  | 
+178 | /api/v1/hotel/coupon/list | /api/v1/hotel/coupon/list |  | 
+179 | /api/v1/message/type/list | /api/v1/message/type/list |  | 
+180 | /api/v1/hotel/add | /api/v1/hotel/add |  | 
+181 | /api/v1/testModel/list | /api/v1/testModel/list |  |
+182 | /api/v1/user/group/add | /api/v1/user/group/add |  | 
+183 | /api/v1/user/order/list | /api/v1/user/order/list |  | 
+184 | /api/v1/payment/record/delete | /api/v1/payment/record/delete |  | 
+185 | /api/v1/a/temp/add | /api/v1/a/temp/add |  | 
+186 | /api/v1/system/operation/log/get | /api/v1/system/operation/log/get |  | 
+187 | /api/v1/hotel/service/add | /api/v1/hotel/service/add |  | 
+188 | /api/v1/user/feedback/add | /api/v1/user/feedback/add |  | 
+189 | /api/v1/user/permission/update | /api/v1/user/permission/update |  | 
+190 | //testModel/testModel/abc | //testModel/testModel/abc |  |
+191 | /api/v1/message/update | /api/v1/message/update |  | 
+192 | /api/v1/hotel/app/update | /api/v1/hotel/app/update |  | 
+[Table [states]: Caption with label.]
+
+
+
+2020-03-17: 详细接口文档
+=================================================================
+
+
+### 1. XXX接口： /testModel/testModel/list1
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | pageNumber | int |   | 
+   2 | pageSize | int |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /testModel/testModel/list2
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/payment/record/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | PaymentRecord |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/app/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/group/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/dict/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | Hotel |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/testModel/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： //testModel/testModel/tim
+
+#### 1）request
+   无参数
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/permission/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserPermission |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/operator/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | User |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/coupon/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/coupon/public
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/operator/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/info/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | Room |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/operation/log/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/a/temp/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/device/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/file/upload/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/operation/log/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/file/upload/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /user/face/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/order/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserOrder |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /routes
+
+#### 1）request
+   无参数
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/message/type/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | MessageType |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/type/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | RoomType |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/register
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | user | User |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/permission/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/account/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserAccount |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/coupon/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | HotelCoupon |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/payment/record/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/subsystem/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | HotelSubsystem |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/payment/record/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | PaymentRecord |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/account/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/feedback/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/third
+
+#### 1）request
+   无参数
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/logout
+
+#### 1）request
+   无参数
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /testModel/testModel/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/subsystem/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/info/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/account/flow/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/checked/in/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/log/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | SystemLog |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/file/upload/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/engaged/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/message/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/service/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | HotelService |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /user/face/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /user/face/getUserByFace
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | faceInfo | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/goods/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/engaged/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/dict/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/checked/in/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | RoomCheckedIn |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/service/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/group/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/app/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | HotelApp |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/card/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/group/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserGroup |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/service/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | SystemService |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/checked/in/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/role/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/feedback/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserFeedback |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/info/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserInfo |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/device/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/type/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/goods/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/file/upload/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | FileUpload |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/order/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserOrder |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/engaged/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/operator/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/card/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/account/flow/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/fingerprint
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | fingerprint | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/account/flow/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserAccountFlow |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/info/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserInfo |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/account/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/message/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/info/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/coupon/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | HotelCoupon |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/coupon/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserCoupon |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/service/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/log/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | SystemLog |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/coupon/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/operator/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserOperator |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/card/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/log/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/goods/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/dict/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | SystemDict |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/device/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | HotelDevice |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | Room |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/log/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/operator/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserOperator |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | User |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/subsystem/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | HotelSubsystem |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/a/temp/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/goods/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | HotelGoods |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /testModel/testModel/delete1
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/type/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/a/temp/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | ATemp |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/device/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | HotelDevice |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /user/face/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | userId | String |   | 
+   2 | faceInfo | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/feedback/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/subsystem/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/role/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserRole |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/type/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | RoomType |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/dict/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | SystemDict |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/service/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /testModel/testModel/update1
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | Test |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/role/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/engaged/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | RoomEngaged |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/login
+
+#### 1）request
+   无参数
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/account/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/message/type/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/card/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserCard |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/dict/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/message/type/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | MessageType |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： //testModel/testModel/debug
+
+#### 1）request
+   无参数
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/feedback/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/service/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/operation/log/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | SystemOperationLog |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /user/face/upload
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | faceInfo | String |   | 
+   2 | faceInfo2 | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/operation/log/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | SystemOperationLog |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/group/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/face
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | faceInfo | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/coupon/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/role/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /user/face/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | userId | String |   | 
+   2 | faceInfo | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/coupon/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/service/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/service/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | SystemService |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/account
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | username | String |   | 
+   2 | password | String |   | 
+   3 | code | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/role/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserRole |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/message/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | Message |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/device/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/engaged/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | RoomEngaged |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/checked/in/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/log/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/app/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/coupon/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/type/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/goods/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | HotelGoods |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/testModel/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/message/type/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/payment/record/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/order/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/permission/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/message/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/permission/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/subsystem/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/account/flow/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/testModel/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | Test |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/service/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/testModel/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | Test |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/card/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserCard |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /testModel/testModel/add1
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | testModel | Test |   |
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： //
+
+#### 1）request
+   无参数
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/order/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/account/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserAccount |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/app/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /model/view/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | db | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /user/face/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/account/flow/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserAccountFlow |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/file/upload/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | FileUpload |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /model/view
+
+#### 1）request
+   无参数
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/room/checked/in/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | RoomCheckedIn |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/a/temp/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/coupon/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/message/type/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | Hotel |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/testModel/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/group/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserGroup |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/order/list
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | condition | BaseCondition |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/payment/record/delete
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/a/temp/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | ATemp |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/system/operation/log/get
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | id | String |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/service/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | HotelService |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/feedback/add
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserFeedback |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/user/permission/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | UserPermission |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： //testModel/testModel/abc
+
+#### 1）request
+   无参数
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/message/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | Message |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+### 1. XXX接口： /api/v1/hotel/app/update
+
+#### 1）request
+   序号 | 参数名 | 约束 | 是否必须 | 描述
+   ---- | :----- | :--: | :------: | ------
+   1 | entity | HotelApp |   | 
+
+#### 2）response
+
+序号 | 参数名 | 约束 | 是否必须 | 描述
+---- | :----- | :--: | :------: | --------
+---- | service | Service  |  Y   | service对象
+
+
+<style class="fallback">body{visibility:hidden}</style><script>markdeepOptions={tocStyle:'long'};</script>
+<!-- Markdeep: --><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js?" charset="utf-8"></script>

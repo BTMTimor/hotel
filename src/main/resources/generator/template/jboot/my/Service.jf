@@ -1,0 +1,8 @@
+package #(metaData.servicePackage);
+
+import #(config.baseService);
+import #(metaData.modelPackage).#(metaData.modelName);
+
+public interface #(metaData.serviceName) extends BaseService<#(metaData.modelName)>{
+
+}

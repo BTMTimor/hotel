@@ -1,0 +1,35 @@
+#[[# 所有对象]]#
+
+
+#for(tableMeta : tableMetas)
+
+#[[###]]# #(tableMeta.modelName)对象
+
+#for(cm : tableMeta.columnMetas)
+<table>
+    <th>
+        <td>name<td>
+        <td>javaType<td>
+        <td>attrName<td>
+        <td>type<td>
+        <td>isNullable<td>
+        <td>isPrimaryKey<td>
+        <td>defaultValue<td>
+        <td>remarks<td>
+    <th>
+    <tr>
+        <td>#(cm.name)</td>
+        <td>#(cm.javaType)</td>
+        <td>#(cm.attrName)</td>
+        <td>#(cm.type)</td>
+        <td>#(cm.isNullable)</td>
+        <td>#(cm.isPrimaryKey)</td>
+        <td>#(cm.defaultValue)</td>
+        <td>#(cm.remarks)</td>
+    </tr>
+</table>
+ ### #(cm.attrName) | #(cm.javaType) |  #(cm.remarks)
+#end
+
+#end
+

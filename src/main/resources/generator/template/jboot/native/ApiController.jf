@@ -1,0 +1,14 @@
+package #(metaData.apiControllerPackage);
+
+import #(metaData.servicePackage).#(metaData.serviceName);
+import com.jfinal.aop.Inject;
+import io.jboot.web.controller.JbootController;
+import io.jboot.web.controller.annotation.RequestMapping;
+
+@SuppressWarnings("unused")
+@RequestMapping("#(metaData.apiControllerRoute)")
+public class #(metaData.apiControllerName) extends JbootController {
+    @Inject
+    private #(metaData.serviceName) #(firstCharToLowerCase(metaData.serviceName));
+
+}

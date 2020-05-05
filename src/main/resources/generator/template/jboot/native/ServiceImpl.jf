@@ -1,0 +1,13 @@
+package #(metaData.serviceImplPackage);
+
+import #(config.baseServiceImpl);
+import io.jboot.aop.annotation.Bean;
+import #(metaData.servicePackage).#(metaData.serviceName);
+import #(metaData.modelPackage).#(metaData.modelName);
+import io.jboot.service.JbootServiceBase;
+
+
+@Bean
+public class #(metaData.serviceImplName) extends JbootServiceBase<#(metaData.modelName)> implements #(metaData.serviceName) {
+
+}
